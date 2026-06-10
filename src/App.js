@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { 
-  LayoutDashboard, User, Pill, TestTube, Lock, FileText, 
-  Bot, Video, Syringe, ShieldAlert, Search, Bell, Globe, 
-  Mic, Heart, Activity, Droplet, Thermometer, Calendar, 
-  ChevronRight, Phone, Clock, Plus, ShieldCheck, Fingerprint, MapPin
+import {
+  LayoutDashboard, User, Pill, TestTube, Lock, FileText,
+  Bot, Video, Syringe, ShieldAlert, Search, Bell, Globe,
+  Mic, Heart, Activity, Droplet, Thermometer, Calendar,
+  ChevronRight, Phone, ShieldCheck, Fingerprint
 } from 'lucide-react';
 
 export default function App() {
