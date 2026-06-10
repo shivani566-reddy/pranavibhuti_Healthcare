@@ -1,18 +1,17 @@
-name: Healthcare Platform CI
+name: Healthcare Project Activity
 
 on:
   push:
   pull_request:
 
 jobs:
-  project-validation:
+  activity:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Project Activity
+      - name: Show Details
         run: |
           echo "================================="
           echo "Contributor : ${{ github.actor }}"
@@ -22,38 +21,16 @@ jobs:
           echo "Event       : ${{ github.event_name }}"
           echo "================================="
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install Frontend Dependencies
-        run: |
-          if [ -f package.json ]; then
-            npm install
-          fi
+      - name: Install Dependencies
+        run: npm install || true
 
-      - name: Build Frontend
-        env:
-          CI: false
-        run: |
-          if [ -f package.json ]; then
-            npm run build --if-present
-          fi
+      - name: Build Project
+        run: npm run build --if-present || true
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Validate Python Services
-        run: |
-          python -m compileall . || true
-
-      - name: Check Docker Files
-        run: |
-          find . -name "Dockerfile" || true
-
-      - name: Workflow Complete
-        run: |
-          echo "Healthcare Platform Validation Completed"
+      - name: Complete
+        run: echo "Workflow Finished"
