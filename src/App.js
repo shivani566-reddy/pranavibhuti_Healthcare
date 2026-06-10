@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   LayoutDashboard, User, Pill, TestTube, Lock, FileText,
   Bot, Video, Syringe, ShieldAlert, Search, Bell, Globe,
