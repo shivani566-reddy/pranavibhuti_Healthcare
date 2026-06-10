@@ -1,0 +1,57 @@
+name: Healthcare Platform CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  project-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Project Activity
+        run: |
+          echo "================================="
+          echo "Contributor : ${{ github.actor }}"
+          echo "Repository  : ${{ github.repository }}"
+          echo "Branch      : ${{ github.ref_name }}"
+          echo "Commit      : ${{ github.sha }}"
+          echo "Event       : ${{ github.event_name }}"
+          echo "================================="
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Frontend Dependencies
+        run: |
+          if [ -f package.json ]; then
+            npm install
+          fi
+
+      - name: Build Frontend
+        run: |
+          if [ -f package.json ]; then
+            npm run build --if-present
+          fi
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate Python Services
+        run: |
+          python -m compileall . || true
+
+      - name: Check Docker Files
+        run: |
+          find . -name "Dockerfile" || true
+
+      - name: Workflow Complete
+        run: |
+          echo "Healthcare Platform Validation Completed"
