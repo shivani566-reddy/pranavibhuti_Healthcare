@@ -1,0 +1,32 @@
+# Secrets — NEVER commit these
+.env
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+dist/
+build/
+*.sqlite3
+*.db
+
+# Uploads
+uploads/
+
+# IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Test
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Alembic (keep versions folder, ignore temp)
+alembic/versions/__pycache__/
